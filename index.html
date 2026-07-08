@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="bg" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MasterMind Bulgaria - Ремонтът не е диагноза</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#904d00",
+                        "surface": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-fixed-variant": "#6e3900",
+                        "secondary-fixed": "#ffdcc3",
+                        "surface-variant": "#e0e3e5",
+                        "outline-variant": "#c5c6cd",
+                        "tertiary-container": "#1a2a3e",
+                        "on-primary-container": "#8590a6",
+                        "primary": "#091426",
+                        "on-primary-fixed": "#111c2d",
+                        "primary-fixed-dim": "#bcc7de",
+                        "on-tertiary-container": "#8191a9",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary": "#041528",
+                        "secondary-container": "#fe932c",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "outline": "#75777d",
+                        "on-secondary-container": "#663500",
+                        "on-surface": "#191c1e",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d8e3fb",
+                        "on-surface-variant": "#45474c",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "background": "#f7f9fb",
+                        "primary-container": "#1e293b",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#bcc7de",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eceef0",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-tint": "#545f73",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed-dim": "#ffb77d",
+                        "on-secondary-fixed": "#2f1500",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "surface-container-low": "#f2f4f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "48px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter", "sans-serif"],
+                        "display-lg-mobile": ["Inter", "sans-serif"],
+                        "headline-sm": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- TopNavBar Shared Component -->
+<header class="bg-surface w-full top-0 sticky border-b border-outline-variant z-50 transition-all duration-300 backdrop-blur-md bg-opacity-90">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-screen-2xl mx-auto">
+<div class="font-display-lg text-display-lg tracking-tighter text-primary truncate hidden md:block">Солид Строй Си ЕООД</div>
+<div class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary truncate md:hidden">Солид Строй Си</div>
+<nav class="hidden md:flex gap-lg items-center">
+<!-- Using Active State Logic: 'Services' is visually active for the landing page context -->
+<a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary pb-1 cursor-pointer transition-transform active:scale-95" href="#services">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200 cursor-pointer transition-transform active:scale-95" href="#portfolio">Portfolio</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200 cursor-pointer transition-transform active:scale-95" href="#process">Process</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200 cursor-pointer transition-transform active:scale-95" href="#the-duo">The Duo</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex items-center justify-center border border-secondary text-secondary px-md py-sm rounded hover:bg-secondary hover:text-on-secondary transition-colors font-label-md text-label-md">
+                    Get a Quote
+                </button>
+<button class="text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl md:py-[120px] grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-6 flex flex-col gap-md z-10">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary">
+                    Ремонтът не е диагноза.<br>
+<span class="text-secondary">Ние сме лекът.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Иван и Станкето, 20 години опит и нула излишно кафе. Правим домове, не проблеми. Забравете за хаоса и прахта – ние носим ред, точност и съвършенство.</p>
+<div class="pt-sm flex flex-wrap gap-sm">
+<a class="inline-flex items-center justify-center bg-primary text-on-primary px-lg py-sm rounded hover:bg-tertiary-container transition-colors font-label-md text-label-md shadow-sm" href="#contact">
+                        Свържете се с нас
+                    </a>
+<a class="inline-flex items-center justify-center border border-outline text-on-surface px-lg py-sm rounded hover:bg-surface-variant transition-colors font-label-md text-label-md" href="#process">
+                        Вижте как работим
+                    </a>
+</div>
+</div>
+<div class="md:col-span-6 mt-lg md:mt-0 relative group">
+<div class="absolute inset-0 bg-primary-fixed rounded transform translate-x-4 translate-y-4 -z-10 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500"></div>
+<img alt="Modern renovated living room" class="w-full h-[400px] md:h-[600px] object-cover rounded shadow-lg border border-outline-variant transition-transform duration-500 group-hover:-translate-y-2" data-alt="A bright, airy, newly renovated modern living room interior in Bulgaria. The space features high-end finishes, clean lines, and warm wood accents contrasting with slate blue details, reflecting a sophisticated professional aesthetic. Sunlight pours in through large windows, highlighting the flawless craftsmanship and completely dust-free environment. The mood is calm, trustworthy, and premium, representing the perfect end result of a meticulous renovation project." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlweem_VWs_0oBiqflFbJ9WKbflY4UW4DJONgdpa1bwt-Mdj54U25uEPIiFz_tty6xwnV4xOfsyKwhz8Z4yVVmRMwJbmYBZulJgAn2Lls4SBAAfxMdFD4ICQr5eezRsg-YQEEn6rtoIKcG3D3DX6Tx-ongpPbIczQcrwgcWHG6h9vLjQmdqsmQz2KkI8CWGy7YNGkgPjTv4vbEPIIR069wVzUk0OTH_0sX17m6EEq0GhDZgqeH4MFfzupJMB5FUbCO0uzDzzYJ4m0x">
+</div>
+</section>
+<!-- Feature Section: Under 100sqm -->
+<section class="bg-surface-container-low w-full border-y border-outline-variant" id="the-duo">
+<div class="max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 order-2 md:order-1">
+<img alt="Architectural details" class="w-full aspect-[4/5] object-cover rounded shadow-md border border-outline-variant" data-alt="A close-up view of precise architectural details in a compact, high-end residential apartment. The image showcases flawless alignment between a warm oak floor and a crisp white baseboard, demonstrating extreme attention to detail and zero visible mess. Soft, ambient natural lighting creates a sense of domestic warmth mixed with architectural precision. The overall aesthetic is refined minimalism, emphasizing quality over scale in interior renovations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6xGIxnAivDvvFSbcWtAJuuNHEckrfvyDjFaujkP9Zx-zT9xGgLKdqj2nrdFnPqXzVlNcDoKTs6JEW_jmM7nk27C_af7UPRDYkvVkWfe4P9URNmebH_scdc3y8m2HB7ovqNIZA5JaaBdql0Yl0qWgwQMiyR0-FE8ug0UorFWrK09UNymxq-IRUl80tFOO9miUN_DROCrudYWp74wZy8YlRdV5_OVv5DY16ZGOEqm8w5RxpkIKJKUvrsggV6B3-Yn-BcUpieF7fl8Jb">
+</div>
+<div class="md:col-span-6 md:col-start-7 order-1 md:order-2 flex flex-col gap-md">
+
+<h2 class="font-headline-md text-headline-md text-primary">Специалисти по уют. Не строим молове, а Вашия перфектен дом.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Вярваме, че малките пространства изискват най-голямото внимание. Когато работим в апартаменти и къщи, всеки милиметър е от значение. Нашият подход комбинира архитектурна прецизност с домашен уют.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Ние сме Иван и Станкето. Без подизпълнители, които се губят, без бригади, които вдигат шум. Знаете точно кой влиза в дома ви и кой носи отговорност за всеки поставен контакт и всяка боядисана стена.</p>
+<ul class="mt-sm flex flex-col gap-sm">
+<li class="flex items-center gap-sm font-label-md text-label-md text-primary">
+<span class="material-symbols-outlined text-secondary icon-fill">check_circle</span>
+                            Персонален ангажимент от начало до край
+                        </li>
+<li class="flex items-center gap-sm font-label-md text-label-md text-primary">
+<span class="material-symbols-outlined text-secondary icon-fill">check_circle</span>
+                            Микро-мениджмънт на всеки детайл
+                        </li>
+<li class="flex items-center gap-sm font-label-md text-label-md text-primary">
+<span class="material-symbols-outlined text-secondary icon-fill">check_circle</span>
+                            Чиста работна среда всеки ден
+                        </li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="w-full max-w-screen-2xl mx-auto px-margin-mobile md:px-margin-desktop py-xl" id="services">
+<div class="text-center max-w-2xl mx-auto mb-xl">
+<h2 class="font-headline-md text-headline-md text-primary mb-sm">Какво лекуваме?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Нашите услуги са проектирани да премахнат стреса от ремонта. Ние не просто работим, ние решаваме проблеми интелигентно.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-lg flex flex-col gap-md hover:shadow-[0_10px_40px_-10px_rgba(9,20,38,0.12)] transition-shadow duration-300">
+<div class="w-12 h-12 rounded bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">format_paint</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Интериорни ремонти</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                        За тези, които искат стените им да са по-прави от пътя за морето. Шпакловка, боядисване и настилки с хирургическа точност.
+                    </p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-lg flex flex-col gap-md hover:shadow-[0_10px_40px_-10px_rgba(9,20,38,0.12)] transition-shadow duration-300">
+<div class="w-12 h-12 rounded bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">plumbing</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">ВиК &amp; Ел</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                        Защото токът и водата са добри приятели само в батериите. Безопасни, надеждни и скрити инсталации, които просто работят.
+                    </p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-lg flex flex-col gap-md hover:shadow-[0_10px_40px_-10px_rgba(9,20,38,0.12)] transition-shadow duration-300">
+<div class="w-12 h-12 rounded bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">lightbulb</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Осветление</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                        Светлина, която не ви прави да изглеждате като на разпит. Проектиране и монтаж на интелигентно и амбиентно осветление.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Comparison Section -->
+<section class="bg-primary text-on-primary py-xl border-y border-primary-container" id="process">
+<div class="max-w-screen-lg mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-md text-headline-md text-center mb-xl">Ние срещу "Обикновения Майстор"</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-outline-variant border border-outline-variant rounded overflow-hidden">
+<!-- Ordinary Master Column -->
+<div class="bg-surface text-on-surface p-lg flex flex-col gap-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant text-center pb-md border-b border-outline-variant">"Обикновеният Майстор"</h3>
+<ul class="flex flex-col gap-md mt-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-error mt-xs">close</span>
+<span class="font-body-md text-body-md">Безкрайни почивки за кафе и цигари, докато вие чакате.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-error mt-xs">close</span>
+<span class="font-body-md text-body-md">"Опа, тука имаме проблем" - скрити такси и надуване на цената.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-error mt-xs">close</span>
+<span class="font-body-md text-body-md">Прах навсякъде, включително при съседите. Хаос след края на деня.</span>
+</li>
+</ul>
+</div>
+<!-- MasterMind Column -->
+<div class="bg-surface-container-lowest text-primary p-lg flex flex-col gap-md relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<h3 class="font-headline-sm text-headline-sm text-primary text-center pb-md border-b border-outline-variant">Солид Строй Си ЕООД</h3>
+<ul class="flex flex-col gap-md mt-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary icon-fill mt-xs">check</span>
+<span class="font-body-md text-body-md font-medium">Фокусирана работа със строг график. Ние ценим вашето време.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary icon-fill mt-xs">check</span>
+<span class="font-body-md text-body-md font-medium">Твърда цена след първоначалния оглед. Прозрачност без изненади.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary icon-fill mt-xs">check</span>
+<span class="font-body-md text-body-md font-medium">Оставяме обекта по-чист, отколкото сме го заварили. Безкомпромисна хигиена.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="w-full max-w-screen-md mx-auto px-margin-mobile md:px-margin-desktop py-xl" id="contact">
+<div class="bg-surface-container-lowest border border-outline-variant rounded p-lg md:p-[64px] shadow-sm">
+<div class="text-center mb-lg">
+<h2 class="font-headline-md text-headline-md text-primary mb-xs">Готови ли сте за промяна?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Работим ексклузивно на територията на София и Пловдив.</p>
+</div>
+<form action="#" class="flex flex-col gap-md" method="POST" onsubmit="event.preventDefault();">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-primary uppercase" for="name">Име и Фамилия</label>
+<input class="w-full border border-outline-variant rounded bg-surface px-md py-sm font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="name" name="name" placeholder="Иван Иванов" required="" type="text">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-primary uppercase" for="phone">Телефон</label>
+<input class="w-full border border-outline-variant rounded bg-surface px-md py-sm font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="phone" name="phone" placeholder="+359 888 123 456" required="" type="tel">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-primary uppercase" for="location">Локация</label>
+<select class="w-full border border-outline-variant rounded bg-surface px-md py-sm font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors appearance-none" id="location" name="location">
+<option value="sofia">София</option>
+<option value="plovdiv">Пловдив</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-primary uppercase" for="details">Кратко описание на проекта (опционално)</label>
+<textarea class="w-full border border-outline-variant rounded bg-surface px-md py-sm font-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors resize-none" id="details" name="details" placeholder="Апартамент, пълна подмяна на ВиК..." rows="3"></textarea>
+</div>
+<button class="mt-sm w-full bg-secondary text-on-secondary py-sm rounded font-label-md text-label-md hover:bg-[#a65900] transition-colors shadow-sm" type="submit">
+                        Изпратете запитване
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer Shared Component -->
+<footer class="bg-primary w-full mt-xl text-on-primary">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-lg max-w-screen-2xl mx-auto gap-md w-full">
+<div class="font-headline-sm text-headline-sm text-secondary-container">Солид Строй Си ЕООД</div>
+<div class="font-label-sm text-label-sm text-on-primary text-center md:text-left">© 2024 Солид Строй Си ЕООД. We leave the site cleaner than we found it.</div>
+<nav class="flex gap-md">
+<a class="font-label-sm text-label-sm text-on-primary-container hover:text-white transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-primary-container hover:text-white transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-primary-container hover:text-white transition-colors cursor-pointer" href="#">FAQ</a>
+</nav>
+</div>
+</footer>
+
+
+</body></html>
